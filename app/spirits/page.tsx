@@ -3,43 +3,49 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { 
-  GiGlassShot, 
-  GiWhisk, 
-  GiPlantRoots, 
-  GiDrum, 
-  GiWineBottle 
-} from "react-icons/gi";
+  PiWine, 
+  PiDrop, 
+  PiLeaf, 
+  PiWaves, 
+  PiSparkle
+} from "react-icons/pi";
 import { FiArrowRight } from "react-icons/fi";
 
 const categories = [
   { 
     name: "Vodka", 
     slug: "vodka", 
-    icon: GiGlassShot, 
+    icon: PiDrop, 
     description: "Pure expression, crystalline clarity. The essence of the north, filtered through centuries of tradition." 
   },
   { 
     name: "Whisky", 
     slug: "whisky", 
-    icon: GiWhisk, 
+    icon: PiWine, 
     description: "Time, wood, and smoke. A conversation between the cask and the spirit that lasts decades." 
   },
   { 
     name: "Gin", 
     slug: "gin", 
-    icon: GiPlantRoots, 
+    icon: PiLeaf, 
     description: "Botanical alchemy. A complex landscape of juniper, herbs, and exotic aromatics." 
   },
   { 
     name: "Rum", 
     slug: "rum", 
-    icon: GiDrum, 
+    icon: PiWaves, 
     description: "Caribbean heritage. Tropical sweetness aging into deep, mahogany complexity." 
+  },
+  { 
+    name: "Champagne", 
+    slug: "champagne", 
+    icon: PiSparkle, 
+    description: "The height of celebration. Effervescent elegance crafted in the heart of France." 
   },
   { 
     name: "Liqueurs", 
     slug: "liqueurs", 
-    icon: GiWineBottle, 
+    icon: PiWine, 
     description: "Crafted complexity. The perfect marriage of spirits, sugar, and secret ingredients." 
   },
 ];
@@ -62,7 +68,7 @@ export default function SpiritsPage() {
           className="text-center mb-24 lg:mb-32"
         >
           <div className="inline-block px-4 py-1 border border-brand-accent/20 rounded-full mb-8">
-            <span className="text-brand-accent/60 text-[10px] uppercase tracking-[0.5em] font-light">The Hoard</span>
+            <span className="text-brand-accent/60 text-[10px] uppercase tracking-[0.2em] font-light">The Hoard</span>
           </div>
           
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-light tracking-tight mb-8">

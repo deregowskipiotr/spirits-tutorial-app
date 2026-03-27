@@ -100,10 +100,10 @@ export default function Home() {
             initial={{ opacity: 0, scale: 0.98, filter: "blur(20px)" }}
             animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
             transition={{ duration: 2.0, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center mb-16 lg:mb-24"
+            className="mb-16 lg:mb-24 text-center lg:text-left"
           >
-            <h1 className="text-5xl md:text-7xl lg:text-8xl tracking-tight mt-0 md:mt-10">
-              <span className="text-white/50 text-5xl italic font-extralight uppercase">THE</span>{" "}
+            <h1 className="text-5xl md:text-7xl lg:text-8xl tracking-tight relative lg:left-[200px] lg:top-[80px]">
+              <span className="text-white/50 text-xl md:text-5xl italic font-extralight uppercase">THE</span>{" "}
               <span className="text-brand-accent/80 drop-shadow-[0_0_15px_rgba(201,126,90,0.4)]">Sanctum</span>
             </h1>
           </motion.div>
@@ -118,7 +118,7 @@ export default function Home() {
               transition={{ duration: 1.5, delay: 1.6, ease: "easeOut" }}
               className="flex-1 lg:pt-16 order-2 lg:order-1 text-center lg:text-left"
             >
-              <p className="text-gray-300 text-xl md:text-2xl lg:text-3xl leading-relaxed font-extralight tracking-tight max-w-2xl italic opacity-90 mx-auto lg:mx-0">
+              <p className="text-gray-300 text-xl md:text-2xl lg:text-3xl leading-normal font-extralight tracking-tight max-w-2xl italic opacity-90 mx-auto lg:mx-0">
                 {isDoorOpen ? innerSanctumSubtitle : originalSubtitle}
               </p>
             </motion.div>

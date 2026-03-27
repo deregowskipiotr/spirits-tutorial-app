@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { GiDrum } from "react-icons/gi";
+import { PiWaves } from "react-icons/pi";
 import { FiArrowLeft } from "react-icons/fi";
 
 const placeholderIndices = [1, 2, 3];
@@ -29,7 +29,7 @@ export default function RumPage() {
         >
           <div className="flex items-center gap-6 mb-8">
             <div className="w-20 h-20 rounded-full border border-brand-accent/20 flex items-center justify-center">
-              <GiDrum className="text-4xl text-brand-accent" />
+              <PiWaves className="text-4xl text-brand-accent" />
             </div>
             <div>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-tight">RUM</h1>

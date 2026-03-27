@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 
 interface DoorProps {
   isOpen: boolean;
@@ -11,6 +11,16 @@ interface DoorProps {
 
 export default function Door({ isOpen, onOpen, imageUrl }: DoorProps) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const prevIsOpen = useRef(isOpen);
+
+  useEffect(() => {
+    // Only play sound if the door is closing (transition from true to false)
+    if (prevIsOpen.current && !isOpen && audioRef.current) {
+      audioRef.current.currentTime = 0;
+      audioRef.current.play();
+    }
+    prevIsOpen.current = isOpen;
+  }, [isOpen]);
 
   const handleOpen = () => {
     if (!isOpen && audioRef.current) {

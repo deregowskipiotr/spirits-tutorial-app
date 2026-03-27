@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { PiWine } from "react-icons/pi";
+import { PiSparkle } from "react-icons/pi";
 import { FiArrowLeft } from "react-icons/fi";
 
 const placeholderIndices = [1, 2, 3];
 
-export default function LiqueursPage() {
+export default function ChampagnePage() {
   return (
     <main className="min-h-screen bg-[#030303] font-old-standard overflow-x-hidden text-gray-200">
       <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,rgba(201,126,90,0.05)_0%,transparent_70%)] pointer-events-none" />
@@ -29,19 +29,19 @@ export default function LiqueursPage() {
         >
           <div className="flex items-center gap-6 mb-8">
             <div className="w-20 h-20 rounded-full border border-brand-accent/20 flex items-center justify-center">
-              <PiWine className="text-4xl text-brand-accent" />
+              <PiSparkle className="text-4xl text-brand-accent" />
             </div>
             <div>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-tight">LIQUEURS</h1>
-              <p className="text-brand-accent/60 text-sm uppercase tracking-[0.4em] mt-2">Crafted Complexity</p>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-tight">CHAMPAGNE</h1>
+              <p className="text-brand-accent/60 text-sm uppercase tracking-[0.4em] mt-2">Effervescent Elegance</p>
             </div>
           </div>
           
           <div className="w-full h-px bg-linear-to-r from-brand-accent/30 to-transparent mb-12" />
           
           <p className="text-gray-400 text-xl font-extralight max-w-3xl leading-relaxed italic">
-            The art of infusion and balance. From ancient herbal elixirs to the vibrant, 
-            modern expressions that define the world&apos;s most iconic cocktails.
+            The height of celebration. Discover the prestigious houses of Epernay and Reims, 
+            where centuries-old traditions meet the delicate art of the bubble.
           </p>
         </motion.div>
 

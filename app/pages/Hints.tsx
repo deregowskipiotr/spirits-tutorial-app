@@ -13,7 +13,6 @@ export default function Hints() {
            transition={{ duration: 1.5 }}
         >
           <h1 className="text-4xl md:text-6xl lg:text-7xl tracking-tight mb-8">
-            <span className="text-white/50 text-3xl md:text-4xl italic font-extralight uppercase">THE</span>{" "}
             <span className="text-brand-accent drop-shadow-[0_0_20px_rgba(201,126,90,0.2)]">HINTS</span>
           </h1>
           

@@ -51,7 +51,14 @@ export default function Navbar() {
     { name: "Intention", href: "/#intention" },
     { name: "Hints", href: "/#hints" },
     { name: "Contact", href: "/#contact" },
+    { name: "Spirits", href: "/spirits" },
   ];
+
+  const isLinkActive = (href: string) => {
+    if (href === "/spirits") return pathname.startsWith("/spirits");
+    if (pathname !== "/") return false;
+    return activeSection === href.split("#")[1];
+  };
 
   const menuVariants = {
     closed: { opacity: 0, y: -20, filter: "blur(10px)" },
@@ -101,12 +108,12 @@ export default function Navbar() {
                 <Link 
                   href={link.href}
                   className={`text-[12px] uppercase tracking-[0.2em] font-light transition-all duration-500 hover:text-brand-accent relative pb-1 group ${
-                    activeSection === link.href.split("#")[1] ? "text-brand-accent" : "text-gray-400"
+                    isLinkActive(link.href) ? "text-brand-accent" : "text-gray-400"
                   }`}
                 >
                   {link.name}
                   <span className={`absolute bottom-0 left-0 w-full h-px bg-brand-accent/40 transition-transform duration-500 origin-left ${
-                    activeSection === link.href.split("#")[1] ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                    isLinkActive(link.href) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
                   }`} />
                 </Link>
               </motion.div>
@@ -187,7 +194,7 @@ export default function Navbar() {
                     href={link.href}
                     onClick={() => setIsOpen(false)}
                     className={`text-2xl font-light tracking-[0.3em] uppercase transition-colors ${
-                      activeSection === link.href.split("#")[1] ? "text-brand-accent" : "text-white"
+                      isLinkActive(link.href) ? "text-brand-accent" : "text-white"
                     }`}
                   >
                     {link.name}
