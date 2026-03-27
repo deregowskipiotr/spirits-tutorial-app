@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-accent: #C97E5A;
+}
+
+@layer base {
+  body {
+    @apply bg-[#030303] text-gray-200 antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+@layer components {
+  .soul-card {
+    @apply bg-neutral-900/50 backdrop-blur-sm rounded-2xl border border-white/5 
+           hover:border-brand-accent/50 transition-all duration-300;
+  }
+  
+  .soul-quote {
+    @apply border-l-4 border-brand-accent bg-brand-accent/10 
+           p-6 rounded-r-2xl italic;
+  }
+
+  .engraved-pattern {
+    @apply pointer-events-none opacity-10;
+    background-image: repeating-linear-gradient(0deg, #C97E5A 0px, #C97E5A 1px, transparent 1px, transparent 4px);
+  }
+}
