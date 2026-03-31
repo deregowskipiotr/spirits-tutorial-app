@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { PiWine } from "react-icons/pi";
 import { FiArrowLeft } from "react-icons/fi";
 
-const placeholderIndices = [1, 2, 3];
+const placeholderIndices = [1, 2, 3, 4];
 
 export default function LiqueursPage() {
   return (
@@ -13,9 +13,11 @@ export default function LiqueursPage() {
       <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,rgba(201,126,90,0.05)_0%,transparent_70%)] pointer-events-none" />
       <div className="fixed inset-0 engraved-pattern opacity-[0.02] pointer-events-none" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-16 lg:py-24">
+      <div className="relative z-10 max-w-6xl mx-auto px-6 py-16 lg:py-24">
         <Link href="/spirits">
-          <button className="flex items-center gap-2 text-brand-accent/60 hover:text-brand-accent transition-colors duration-300 text-[10px] uppercase tracking-[0.4em] mb-16 group">
+          <button 
+            type="button"
+              className="flex items-center gap-2 pt-2 text-brand-accent/60 hover:text-brand-accent transition-colors duration-300 text-[10px] uppercase tracking-[0.2em] mb-16 group cursor-pointer">
             <FiArrowLeft className="group-hover:-translate-x-1 transition-transform" />
             Back to Hoard
           </button>
@@ -46,9 +48,9 @@ export default function LiqueursPage() {
         </motion.div>
 
         {/* Placeholder for Products */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-12">
           {placeholderIndices.map((i) => (
-            <div key={i} className="h-96 border border-white/5 bg-white/2 rounded-[4px] flex items-center justify-center relative group overflow-hidden">
+            <div key={i} className="h-64 border border-white/5 bg-white/2 rounded-[4px] flex items-center justify-center relative group overflow-hidden">
                <div className="absolute inset-0 bg-brand-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                <span className="text-white/20 text-[10px] uppercase tracking-[0.5em] group-hover:text-brand-accent/40 transition-colors">Premium Content Coming Soon</span>
             </div>

@@ -13,9 +13,11 @@ export default function WhiskyPage() {
       <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,rgba(201,126,90,0.05)_0%,transparent_70%)] pointer-events-none" />
       <div className="fixed inset-0 engraved-pattern opacity-[0.02] pointer-events-none" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-16 lg:py-24">
+      <div className="relative z-10 max-w-6xl mx-auto px-6 py-16 lg:py-24">
         <Link href="/spirits">
-          <button className="flex items-center gap-2 text-brand-accent/60 hover:text-brand-accent transition-colors duration-300 text-[10px] uppercase tracking-[0.4em] mb-16 group">
+          <button 
+            type="button"
+            className="flex items-center gap-2 pt-2 text-brand-accent/60 hover:text-brand-accent transition-colors duration-300 text-[10px] uppercase tracking-[0.2em] mb-16 group cursor-pointer">
             <FiArrowLeft className="group-hover:-translate-x-1 transition-transform" />
             Back to Hoard
           </button>
@@ -49,7 +51,7 @@ export default function WhiskyPage() {
               <div key={type} className="h-64 border border-white/5 bg-white/2 rounded-[4px] p-10 flex flex-col justify-between relative group overflow-hidden">
                  <div className="absolute inset-0 bg-brand-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
                  <h3 className="text-2xl font-light tracking-wide text-white/40 group-hover:text-brand-accent transition-colors">{type}</h3>
-                 <span className="text-white/10 text-[9px] uppercase tracking-[0.5em]">Curated Chapter Coming Soon</span>
+                 <span className="text-white/10 text-[9px] uppercase tracking-[0.2em]">Curated Chapter Coming Soon</span>
               </div>
             ))}
           </div>

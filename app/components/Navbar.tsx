@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FiMenu, FiX } from "react-icons/fi";
+import { navLinks } from "../data";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,13 +47,7 @@ export default function Navbar() {
     };
   }, [pathname]);
 
-  const navLinks = [
-    { name: "Home", href: "/#home" },
-    { name: "Intention", href: "/#intention" },
-    { name: "Hints", href: "/#hints" },
-    { name: "Contact", href: "/#contact" },
-    { name: "Spirits", href: "/spirits" },
-  ];
+ 
 
   const isLinkActive = (href: string) => {
     if (href === "/spirits") return pathname.startsWith("/spirits");
@@ -91,8 +86,8 @@ export default function Navbar() {
               }}
               className="group cursor-pointer"
             >
-              <span className="text-3xl md:text-4xl text-white tracking-widest font-light group-hover:text-brand-accent italic transition-colors duration-500">P</span>
-              <span className="text-3xl md:text-4xl text-brand-accent tracking-widest font-light group-hover:text-white -ml-1 italic transition-colors duration-500">D</span>
+              <span className="text-2xl md:text-3xl text-white tracking-widest font-light group-hover:text-brand-accent italic transition-colors duration-500">P</span>
+              <span className="text-2xl md:text-3xl text-brand-accent tracking-widest font-light group-hover:text-white -ml-1 italic transition-colors duration-500">D</span>
             </Link>
           </motion.div>
 
@@ -128,7 +123,9 @@ export default function Navbar() {
             className="hidden lg:block"
           >
             <Link href="/spirits">
-              <button className="px-8 py-3 bg-white/5 hover:bg-brand-accent/10 backdrop-blur-xl border border-brand-accent/20 hover:border-brand-accent/50 rounded-md text-[9px] text-white tracking-[0.3em] font-bold uppercase transition-all duration-700 cursor-pointer active:scale-95">
+              <button 
+                type="button"
+                className="px-8 py-3 bg-white/5 hover:bg-brand-accent/10 backdrop-blur-xl border border-brand-accent/20 hover:border-brand-accent/50 rounded-md text-[9px] text-white tracking-[0.2em] font-bold uppercase transition-all duration-700 cursor-pointer active:scale-95">
                 MEMBERS ACCESS
               </button>
             </Link>
@@ -168,11 +165,12 @@ export default function Navbar() {
                      window.scrollTo({ top: 0, behavior: "smooth" });
                    }
                  }} 
-                 className="text-3xl text-white tracking-widest font-light"
+                 className="text-2xl text-white tracking-widest font-light italic"
                >
-                P<span className="text-brand-accent">D</span>
+                P<span className="text-brand-accent -ml-1">D</span>
               </Link>
               <button 
+                type="button"
                 onClick={() => setIsOpen(false)}
                 aria-label="Close Menu"
                 className="text-brand-accent text-3xl p-2 cursor-pointer"
@@ -193,7 +191,7 @@ export default function Navbar() {
                   <Link 
                     href={link.href}
                     onClick={() => setIsOpen(false)}
-                    className={`text-2xl font-light tracking-[0.3em] uppercase transition-colors ${
+                    className={`text-xl font-light tracking-[0.2em] uppercase transition-colors ${
                       isLinkActive(link.href) ? "text-brand-accent" : "text-white"
                     }`}
                   >
@@ -206,7 +204,9 @@ export default function Navbar() {
             {/* Overlay Footer Button */}
             <div className="p-8 pb-16">
               <Link href="/spirits" onClick={() => setIsOpen(false)}>
-                <button className="w-full py-5 bg-brand-accent/10 border border-brand-accent/30 rounded-md text-sm text-white tracking-[0.4em] font-light uppercase">
+                <button 
+                  type="button"
+                  className="w-full py-4 bg-brand-accent/10 border border-brand-accent/30 rounded-md text-sm text-white tracking-[0.2em] font-light uppercase">
                   ENTER THE HOARD
                 </button>
               </Link>
