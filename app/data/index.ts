@@ -768,28 +768,28 @@ export const champagneData: Record<string, ChampagneProduct> = {
     ]
   },
   
-  rosé: {
-    id: 'rosé',
-    title: 'Rosé',
-    slug: 'rosé',
+  rose: {
+    id: 'rose',
+    title: 'Rose',
+    slug: 'rose',
     description: 'Romantic and vibrant. Our Rosé Champagne combines the elegance of traditional Champagne with the seductive charm of red fruit flavors.',
     sections: [
       {
         id: 1,
         text: 'Our Rosé Champagne is crafted using the traditional "saignée" method, where a portion of Pinot Noir juice is allowed brief skin contact to extract its beautiful pink hue and delicate red fruit character. The blend features 70% Chardonnay for elegance and structure, complemented by 30% still red wine from the Bouzy and Ambonnay regions—some of the finest Pinot Noir in Champagne—adding depth and complexity.',
-        image: '/images/champagne/rosé-1.jpg',
+        image: '/images/champagne/rose-1.jpg',
         imagePosition: 'right'
       },
       {
         id: 2,
         text: 'The wine undergoes secondary fermentation in the bottle and ages on its lees for 5 years, allowing the flavors to integrate and develop. The addition of still red wine contributes vibrant notes of fresh strawberries, raspberries, and red currant that distinguish this Rosé from white Champagnes. The final blend achieves perfect balance between the freshness of Chardonnay and the fruit-forward character of Pinot Noir.',
-        image: '/images/champagne/rosé-2.jpg',
+        image: '/images/champagne/rose-2.jpg',
         imagePosition: 'left'
       },
       {
         id: 3,
         text: 'With its beautiful salmon-pink hue and aromas of wild strawberries, rose petals, and red berries, this Champagne is as visually stunning as it is delicious. The palate is elegant and expressive, featuring flavors of ripe cherry, blood orange, and a hint of spice, supported by fine, persistent bubbles. Perfect for romantic occasions, pairing with grilled salmon, or serving with fresh berry desserts.',
-        image: '/images/champagne/rosé-3.jpg',
+        image: '/images/champagne/rose-3.jpg',
         imagePosition: 'right'
       }
     ]

@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 import { GiChampagneCork } from "react-icons/gi";
 
-const champagneTypes = ["Premium", "Elegant", "Rosé", "Unique"];
+const champagneTypes = ["Premium", "Elegant", "Rose", "Unique"];
 
 export default function ChampagnePage() {
   return (

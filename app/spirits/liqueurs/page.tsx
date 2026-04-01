@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 import { MdOutlineLiquor } from "react-icons/md";
-import { liqueurData } from "../../../data";
+import { liqueurData } from "@/app/data";
 
 const liqueurTypes = ["Premium", "Herbal", "Fruit", "Cream"];
 
