@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { PiWine } from "react-icons/pi";
-import { FiArrowLeft } from "react-icons/fi";
+import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
+import { LiaGlassWhiskeySolid } from "react-icons/lia";
 
 const whiskyTypes = ["Bourbon", "Scotch", "Irish", "Japanese"];
 
@@ -31,11 +31,11 @@ export default function WhiskyPage() {
         >
           <div className="flex items-center gap-6 mb-8">
             <div className="w-20 h-20 rounded-full border border-brand-accent/20 flex items-center justify-center">
-              <PiWine className="text-4xl text-brand-accent" />
+              <LiaGlassWhiskeySolid className="text-4xl text-brand-accent" />
             </div>
             <div>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-tight">WHISKY</h1>
-              <p className="text-brand-accent/60 text-sm uppercase tracking-[0.4em] mt-2">Time, Wood, and Tradition</p>
+              <p className="text-brand-accent/60 text-sm uppercase tracking-[0.2em] mt-2">Time, Wood, and Tradition</p>
             </div>
           </div>
           
@@ -46,15 +46,44 @@ export default function WhiskyPage() {
             the smoky islands, and the pristine spring waters that define the world&apos;s most revered spirit.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-12">
-            {whiskyTypes.map((type) => (
-              <div key={type} className="h-64 border border-white/5 bg-white/2 rounded-[4px] p-10 flex flex-col justify-between relative group overflow-hidden">
-                 <div className="absolute inset-0 bg-brand-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-                 <h3 className="text-2xl font-light tracking-wide text-white/40 group-hover:text-brand-accent transition-colors">{type}</h3>
-                 <span className="text-white/10 text-[9px] uppercase tracking-[0.2em]">Curated Chapter Coming Soon</span>
-              </div>
-            ))}
-          </div>
+         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-12">
+          {whiskyTypes.map((type, index) => {            
+            return (
+              <motion.div
+                key={type}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 + (index * 0.15), ease: "easeOut" }}
+              >
+                <Link href={`/spirits/whisky/${type.toLowerCase()}`}>
+                  <div 
+                    className="group h-64 rounded-[4px] p-10 backdrop-blur-xl transition-all duration-700 border border-brand-accent/10 hover:border-brand-accent/40 shadow-2xl flex flex-col justify-between relative overflow-hidden"
+                    style={{
+                      background: "linear-gradient(135deg, rgba(16,14,20,0.9) 0%, rgba(8,6,10,0.95) 100%)",
+                    }}
+                  >
+                    {/* Hover Effect Light */}
+                    <div className="absolute inset-0 bg-linear-to-br from-brand-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                            
+                    {/* Engraved pattern on card */}
+                    <div className="absolute inset-0 engraved-pattern opacity-[0.03] group-hover:opacity-10 transition-opacity duration-700" />
+        
+                    <div>                      
+                      <h3 className="text-2xl text-white font-light tracking-wide mb-4 group-hover:text-brand-accent transition-colors duration-500">
+                        {type}
+                      </h3>
+                    </div>
+        
+                    <div className="flex items-center gap-3 text-brand-accent/60 text-[10px] font-bold tracking-[0.2em] uppercase transition-all duration-500 group-hover:gap-5 group-hover:text-brand-accent">
+                      <span>Explore { type } Collection</span>
+                      <FiArrowRight className="text-sm" />
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            );
+          })}
+        </div>
         </motion.div>
       </div>
     </main>

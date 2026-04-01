@@ -60,6 +60,10 @@ export default function Navbar() {
     open: { opacity: 1, y: 0, filter: "blur(0px)" },
   };
 
+  // Hide Navbar on specific subpages like /spirits/vodka/[type]
+  const isDeepSpiritsPage = pathname.split('/').length > 3 && pathname.startsWith("/spirits");
+  if (isDeepSpiritsPage) return null;
+
   return (
     <>
       <nav 
