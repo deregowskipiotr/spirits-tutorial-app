@@ -5,10 +5,6 @@ import { motion } from "framer-motion";
 export default function Intention() {
   return (
     <section id="intention" className="relative min-h-[80vh] py-32 flex flex-col items-center justify-center border-t border-brand-accent/5 overflow-hidden font-old-standard">
-      {/* Background Decorative Elements */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(201,126,90,0.03)_0%,transparent_70%)] pointer-events-none" />
-      <div className="absolute inset-0 engraved-pattern opacity-[0.02] pointer-events-none" />
-
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
         <motion.div
            initial={{ opacity: 0 }}

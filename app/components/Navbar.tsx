@@ -47,7 +47,26 @@ export default function Navbar() {
     };
   }, [pathname]);
 
- 
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    // If it's an anchor link and we are on the home page
+    if (href.startsWith("/#") && pathname === "/") {
+      e.preventDefault();
+      const id = href.split("#")[1];
+      
+      if (id === "home") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+      
+      // Update history without duplicating the hash
+      window.history.pushState(null, "", href);
+      setIsOpen(false);
+    }
+  };
 
   const isLinkActive = (href: string) => {
     if (href === "/spirits") return pathname.startsWith("/spirits");
@@ -82,12 +101,7 @@ export default function Navbar() {
           >
             <Link 
               href="/#home" 
-              onClick={(e) => {
-                if (pathname === "/") {
-                  e.preventDefault();
-                  window.scrollTo({ top: 0, behavior: "smooth" });
-                }
-              }}
+              onClick={(e) => handleLinkClick(e, "/#home")}
               className="group cursor-pointer"
             >
               <span className="text-2xl md:text-3xl text-white tracking-widest font-light group-hover:text-brand-accent italic transition-colors duration-500">P</span>
@@ -106,6 +120,7 @@ export default function Navbar() {
               >
                 <Link 
                   href={link.href}
+                  onClick={(e) => handleLinkClick(e, link.href)}
                   className={`text-[12px] uppercase tracking-[0.2em] font-light transition-all duration-500 hover:text-brand-accent relative pb-1 group ${
                     isLinkActive(link.href) ? "text-brand-accent" : "text-gray-400"
                   }`}
@@ -162,13 +177,7 @@ export default function Navbar() {
             <div className="flex items-center justify-between px-6 py-8">
                <Link 
                  href="/#home" 
-                 onClick={(e) => {
-                   setIsOpen(false);
-                   if (pathname === "/") {
-                     e.preventDefault();
-                     window.scrollTo({ top: 0, behavior: "smooth" });
-                   }
-                 }} 
+                 onClick={(e) => handleLinkClick(e, "/#home")} 
                  className="text-2xl text-white tracking-widest font-light italic"
                >
                 P<span className="text-brand-accent -ml-1">D</span>
@@ -194,7 +203,7 @@ export default function Navbar() {
                 >
                   <Link 
                     href={link.href}
-                    onClick={() => setIsOpen(false)}
+                    onClick={(e) => handleLinkClick(e, link.href)}
                     className={`text-xl font-light tracking-[0.2em] uppercase transition-colors ${
                       isLinkActive(link.href) ? "text-brand-accent" : "text-white"
                     }`}

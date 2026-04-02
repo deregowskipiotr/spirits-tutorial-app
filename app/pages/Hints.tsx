@@ -32,18 +32,24 @@ const cardVariants: Variants = {
 
 export default function Hints() {
   const [activeCategory, setActiveCategory] = useState<string>("All");
+  const [isInitial, setIsInitial] = useState(true);
   
   const categories = ["All", ...Array.from(new Set(hints.map(h => h.category)))];
   const filteredHints = activeCategory === "All" 
     ? hints 
     : hints.filter(h => h.category === activeCategory);
 
+  const handleCategoryChange = (category: string) => {
+    setIsInitial(false);
+    setActiveCategory(category);
+  };
+
   return (
     <section id="hints" className="relative min-h-screen py-32 flex flex-col items-center justify-center border-t border-brand-accent/5 overflow-hidden font-old-standard">
       {/* Content Container */}
       <div className="relative z-10 max-w-6xl w-full mx-auto px-6">
         
-        {/* Header Section - Sequential Title -> Subtitle */}
+        {/* Header Section */}
         <div className="text-center mb-16 lg:mb-20">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -76,23 +82,23 @@ export default function Hints() {
           </motion.p>
         </div>
 
-        {/* Category Filter - Appears after description */}
+        {/* Category Filter - Sequential reveal */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.9, duration: 0.8, ease: "easeOut" }}
+          transition={{ delay: 1.0, duration: 0.8, ease: "easeOut" }}
           className="flex flex-wrap justify-center gap-3 mb-16"
         >
           {categories.map((category) => (
             <button
               type="button"
               key={category}
-              onClick={() => setActiveCategory(category)}
+              onClick={() => handleCategoryChange(category)}
               className={`
                 px-5 py-2 rounded-full text-[11px] uppercase tracking-widest transition-all duration-500 font-light border cursor-pointer
                 ${activeCategory === category 
-                  ? "border-brand-accent/40 bg-brand-accent/10 text-brand-accent" 
+                  ? "border-brand-accent/40 bg-brand-accent/10 text-brand-accent shadow-[0_0_15px_rgba(201,126,90,0.1)]" 
                   : "border-white/5 bg-transparent text-gray-400 hover:border-brand-accent/20 hover:text-brand-accent/80"
                 }
               `}
@@ -102,61 +108,79 @@ export default function Hints() {
           ))}
         </motion.div>
 
-        {/* Cards Grid - Precise Staggered entry */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 min-h-[400px]">
-          <AnimatePresence mode="popLayout" initial={true}>
-            {filteredHints.map((hint, index) => {
-              const Icon = hint.icon;
-              return (
-                <motion.div
-                  layout
-                  key={hint.id}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2 } }}
-                  transition={{ 
-                    duration: 0.8, 
-                    delay: 1.1 + (index * 0.12), 
-                    ease: [0.22, 1, 0.36, 1] 
-                  }}
-                  className="h-[380px]"
-                >
-                  <div 
-                    className="group h-full rounded-sm p-10 backdrop-blur-xl transition-all duration-700 border border-brand-accent/20 hover:border-brand-accent/60 shadow-2xl flex flex-col justify-between relative overflow-hidden cursor-pointer"
-                    style={{
-                      background: "linear-gradient(135deg, rgba(12,10,13,0.8) 0%, rgba(8,6,8,0.9) 100%)",
-                      boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(201, 126, 90, 0.1)"
+        {/* Dynamic Cards Grid */}
+        <div className="min-h-[400px]">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeCategory}
+              initial="hidden"
+              whileInView="visible" // Coordinate grid reveal with scroll
+              viewport={{ once: true, margin: "-100px" }}
+              exit="exit"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: 1,
+                  transition: {
+                    staggerChildren: activeCategory === "All" || isInitial ? 0.18 : 0,
+                    delayChildren: isInitial ? 1.4 : 0.05, // Only wait for headers on the very first scroll
+                  }
+                },
+                exit: { opacity: 0, transition: { duration: 0.3 } }
+              }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8"
+            >
+              {filteredHints.map((hint) => {
+                const Icon = hint.icon;
+                return (
+                  <motion.div
+                    key={hint.id}
+                    variants={{
+                      hidden: (activeCategory === "All" || isInitial) 
+                        ? { opacity: 0, y: 30 } 
+                        : { opacity: 0, y: 30 },
+                      visible: { 
+                        opacity: 1, 
+                        x: 0, 
+                        y: 0,
+                        transition: { duration: 1.2, ease: [0.22, 1, 0.36, 1] } 
+                      }
                     }}
+                    className="h-[380px]"
                   >
-                    {/* Hover Effect Light */}
-                    <div className="absolute inset-0 bg-linear-to-br from-brand-accent/5 via-brand-accent/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-                    
-                    {/* Engraved pattern on card */}
-                    <div className="absolute inset-0 engraved-pattern opacity-[0.03] group-hover:opacity-10 transition-opacity duration-700" />
+                    <div 
+                      className="group h-full rounded-sm p-10 backdrop-blur-xl transition-all duration-700 border border-brand-accent/20 hover:border-brand-accent/60 shadow-2xl flex flex-col justify-between relative overflow-hidden cursor-pointer"
+                      style={{
+                        background: "linear-gradient(135deg, rgba(12,10,13,0.85) 0%, rgba(8,6,8,0.95) 100%)",
+                        boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(201, 126, 90, 0.1)"
+                      }}
+                    >
+                      <div className="absolute inset-0 bg-linear-to-br from-brand-accent/5 via-brand-accent/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                      <div className="absolute inset-0 engraved-pattern opacity-[0.03] group-hover:opacity-10 transition-opacity duration-700" />
 
-                    <div className="relative z-10">
-                      <div className="flex items-center justify-between mb-8">
-                        <div className="w-16 h-16 rounded-full border border-brand-accent/20 flex items-center justify-center group-hover:border-brand-accent/50 group-hover:bg-brand-accent/5 transition-all duration-500">
-                          <Icon className="text-3xl text-brand-accent/60 group-hover:text-brand-accent transition-colors duration-500" />
+                      <div className="relative z-10">
+                        <div className="flex items-center justify-between mb-8">
+                          <div className="w-16 h-16 rounded-full border border-brand-accent/20 flex items-center justify-center group-hover:border-brand-accent/50 group-hover:bg-brand-accent/5 transition-all duration-500">
+                            <Icon className="text-3xl text-brand-accent/60 group-hover:text-brand-accent transition-colors duration-500" />
+                          </div>
+                          <div className="inline-block px-3 py-1 rounded-sm text-[9px] font-bold tracking-widest uppercase bg-transparent text-brand-accent/70 border border-brand-accent/20 group-hover:border-brand-accent/40 group-hover:text-brand-accent transition-all duration-500">
+                            {hint.category}
+                          </div>
                         </div>
-                        <div className="inline-block px-3 py-1 rounded-sm text-[9px] font-bold tracking-widest uppercase bg-transparent text-brand-accent/70 border border-brand-accent/20 group-hover:border-brand-accent/40 group-hover:text-brand-accent transition-all duration-500">
-                          {hint.category}
-                        </div>
+                        
+                        <h3 className="text-2xl text-white font-light tracking-wide pt-6 mb-8 group-hover:text-brand-accent transition-colors duration-500">
+                          {hint.title}
+                        </h3>
+                        
+                        <p className="text-gray-400 pt-8 text-sm font-extralight leading-relaxed italic opacity-80 group-hover:opacity-100 transition-opacity duration-500">
+                          {hint.content}
+                        </p>
                       </div>
-                      
-                      <h3 className="text-2xl text-white font-light tracking-wide pt-6 mb-8 group-hover:text-brand-accent transition-colors duration-500">
-                        {hint.title}
-                      </h3>
-                      
-                      <p className="text-gray-400 pt-8 text-sm font-extralight leading-relaxed italic opacity-80 group-hover:opacity-100 transition-opacity duration-500">
-                        {hint.content}
-                      </p>
                     </div>
-                  </div>
-                </motion.div>
-              );
-            })}
+                  </motion.div>
+                );
+              })}
+            </motion.div>
           </AnimatePresence>
         </div>
       </div>
