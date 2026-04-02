@@ -1,4 +1,4 @@
-import { GiBeerBottle, GiSnowBottle, GiGlassShot, GiChampagneCork } from "react-icons/gi";
+import { GiBeerBottle, GiSnowBottle, GiGlassShot, GiChampagneCork, GiThermometerCold, GiGoldBar, GiNoseFront, GiDroplets, GiCuckooClock } from "react-icons/gi";
 import { LiaGlassWhiskeySolid } from "react-icons/lia";
 import { MdOutlineLiquor } from "react-icons/md";
 
@@ -8,7 +8,52 @@ export  const navLinks = [
     { name: "Hints", href: "/#hints" },
     { name: "Contact", href: "/#contact" },
     { name: "Spirits", href: "/spirits" },
-  ];
+];
+
+export const hints = [
+  {
+    id: 1,
+    title: "Temperature Matters",
+    content: "Never serve spirits directly from the freezer — extreme cold numbs your palate and masks subtle flavor notes.",
+    icon: GiThermometerCold,
+    category: "Serving",
+  },
+  {
+    id: 2,
+    title: "The Golden Rule",
+    content: "Never blend milk-based liqueurs with citrus juices — the acid will cause curdling and ruin your cocktail.",
+    icon: GiGoldBar,
+    category: "Mixing",
+  },
+  {
+    id: 3,
+    title: "Glassware Wisdom",
+    content: "The shape of your glass directs aromatics. Tulip glasses concentrate smells; tumblers let them breathe.",
+    icon: GiGlassShot,
+    category: "Glassware",
+  },
+  {
+    id: 4,
+    title: "Nose Before Sip",
+    content: "80% of what you taste comes from smell. Always take a moment to nose your spirit before the first sip.",
+    icon: GiNoseFront,
+    category: "Tasting",
+  },
+  {
+    id: 5,
+    title: "Water Unlocks Flavors",
+    content: "A few drops of water can release 'congeners' — the flavor compounds that make each spirit unique.",
+    icon: GiDroplets,
+    category: "Science",
+  },
+  {
+    id: 6,
+    title: "Patience Pays",
+    content: "Let bold red wines and aged spirits 'breathe' for 10-15 minutes before serving to soften tannins.",
+    icon: GiCuckooClock,
+    category: "Serving",
+  },
+];
 
   export const categories = [
   { 

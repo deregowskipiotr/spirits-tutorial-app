@@ -53,7 +53,7 @@ const QuotationCard = ({ quote, author, title, delay }: { quote: string; author:
     <div className="relative rounded-sm border border-brand-accent/20 backdrop-blur-xl bg-linear-to-br from-[#0c0a0d]/60 via-[#080608]/60 to-[#0a080c]/60 p-6 transition-all duration-500 hover:border-brand-accent/40">
       
       {/* Decorative quote marks */}
-      <div className="absolute top-4 left-4 text-6xl font-serif text-brand-accent/10 group-hover:text-brand-accent/20 transition-all duration-700">
+      <div className="absolute hidden md:block top-9 left-4 text-6xl font-serif text-brand-accent/10 group-hover:text-brand-accent/40 transition-all duration-700">
         &ldquo;
       </div>
       
@@ -101,8 +101,6 @@ export default function Contact() {
     console.log(formData);
   };
 
- 
-
   return (
     <section id="contact" className="relative min-h-screen py-32 flex flex-col items-center justify-center border-t border-brand-accent/5 overflow-hidden">
       
@@ -137,88 +135,94 @@ export default function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
           >
-            {/* The "Label" Container with Glassmorphism */}
-            <div 
-              className="relative rounded-sm border border-brand-accent/20 backdrop-blur-xl bg-linear-to-br from-[#0c0a0d]/80 via-[#080608]/80 to-[#0a080c]/80 p-[2px]"
-              style={{
-                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(201, 126, 90, 0.1)",
-                background: "linear-gradient(135deg, rgba(12,10,13,0.8) 0%, rgba(8,6,8,0.9) 100%)"
-              }}
-            >
-              {/* Inner Content */}
-              <div className="relative bg-transparent p-8 md:p-10 rounded-sm overflow-hidden">
-                
-                {/* Glassmorphism overlay */}
-                <div className="absolute inset-0 backdrop-blur-md bg-black/20 pointer-events-none" />
-                
-                {/* Subtle engraved pattern */}
-                <div className="absolute inset-0 engraved-pattern opacity-[0.03] pointer-events-none" />
-                
-                {/* Corner ornaments with glass effect */}
-                <div className="absolute top-[2px] left-[2px] w-12 h-12 border-t border-l rounded-sm border-brand-accent/30 backdrop-blur-sm" />
-                <div className="absolute top-[2px] right-[2px] w-12 h-12 border-t border-r rounded-sm border-brand-accent/30 backdrop-blur-sm" />
-                <div className="absolute bottom-[2px] left-[2px] w-12 h-12 border-b border-l rounded-sm border-brand-accent/30 backdrop-blur-sm" />
-                <div className="absolute bottom-[2px] right-[2px] w-12 h-12 border-b border-r rounded-sm border-brand-accent/30 backdrop-blur-sm" />
-                
-                {/* Radial gradient for depth */}
-                <div className="absolute inset-0 bg-linear-to-br from-brand-accent/5 via-transparent to-transparent pointer-events-none" />
-                
-                {/* Form with Unified Components */}
-                <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
-                  <FormField
-                    icon={FiUser}
-                    label="Distiller's Mark"
-                    type="text"
-                    value={formData.name}
-                    onChange={(e) => setFormData({...formData, name: e.target.value})}
-                    placeholder="Your distinguished name"
-                  />
+            {/* Form Container - group for form hover effect ONLY */}
+            <div className="relative group/form">
+              {/* Main form card */}
+              <div 
+                className="relative rounded-sm border border-brand-accent/20 backdrop-blur-xl bg-linear-to-br from-[#0c0a0d]/80 via-[#080608]/80 to-[#0a080c]/80 p-[2px] transition-all duration-500 hover:border-brand-accent/40"
+                style={{
+                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(201, 126, 90, 0.1)",
+                  background: "linear-gradient(135deg, rgba(12,10,13,0.8) 0%, rgba(8,6,8,0.9) 100%)"
+                }}
+              >
+                {/* Inner Content */}
+                <div className="relative bg-transparent p-8 md:p-10 rounded-sm overflow-hidden">
                   
-                  <FormField
-                    icon={FiMail}
-                    label="Correspondence"
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    placeholder="your@cellar.com"
-                  />
+                  {/* Glassmorphism overlay */}
+                  <div className="absolute inset-0 backdrop-blur-md bg-black/20 pointer-events-none" />
                   
-                  <FormField
-                    icon={FiMessageSquare}
-                    label="Your Inquiry"
-                    value={formData.message}
-                    onChange={(e) => setFormData({...formData, message: e.target.value})}
-                    placeholder="Share your tasting preferences or exclusive requests..."
-                    isTextarea={true}
-                  />
+                  {/* Subtle engraved pattern */}
+                  <div className="absolute inset-0 engraved-pattern opacity-[0.03] pointer-events-none" />
                   
-                  {/* Vintage Seal Button */}
-                  <div className="pt-4">
-                    <button
-                      type="submit"
-                      className="group relative w-full py-4 overflow-hidden rounded-sm border border-brand-accent/20 bg-transparent transition-all duration-500 hover:border-brand-accent/40 cursor-pointer backdrop-blur-sm"
-                    >
-                      <div className="absolute inset-0 w-0 bg-brand-accent/5 group-hover:w-full transition-all duration-700" />
-                      <span className="relative flex items-center justify-center gap-3 text-brand-accent/80 group-hover:text-brand-accent text-[10px] font-bold tracking-[0.2em] uppercase">
-                        <FiSend className="text-sm group-hover:translate-x-1 transition-transform duration-500" />
-                        Send with Distinction
-                      </span>
-                    </button>
-                  </div>
+                  {/* Corner ornaments with glass effect */}
+                  <div className="absolute top-[2px] left-[2px] w-12 h-12 border-t border-l rounded-sm border-brand-accent/30 backdrop-blur-sm" />
+                  <div className="absolute top-[2px] right-[2px] w-12 h-12 border-t border-r rounded-sm border-brand-accent/30 backdrop-blur-sm" />
+                  <div className="absolute bottom-[2px] left-[2px] w-12 h-12 border-b border-l rounded-sm border-brand-accent/30 backdrop-blur-sm" />
+                  <div className="absolute bottom-[2px] right-[2px] w-12 h-12 border-b border-r rounded-sm border-brand-accent/30 backdrop-blur-sm" />
                   
-                  {/* Vintage stamp text */}
-                  <div className="text-center pt-3">
-                    <p className="text-[8px] font-light tracking-[0.2em] text-gray-600 uppercase">
-                      Private & Confidential • Estate Bottled Correspondence
-                    </p>
-                  </div>
-                </form>
-              </div>
-            </div>
-            
-            {/* "Label" edge shadow effect */}
-            <div className="h-4 bg-linear-to-t from-black/0 to-black/20 w-full -mt-1" />
-          </motion.div>
+                  {/* Radial gradient for depth */}
+                  <div className="absolute inset-0 bg-linear-to-br from-brand-accent/5 via-transparent to-transparent pointer-events-none" />
+                  
+                  {/* Hover effect overlay - ONLY for form, triggered by group/form */}
+                  <div className="absolute inset-0 bg-linear-to-br from-brand-accent/0 via-brand-accent/0 to-brand-accent/5 opacity-0 group-hover/form:opacity-100 transition-opacity duration-700 pointer-events-none rounded-sm" />
+                  
+                  {/* Form with Unified Components */}
+                  <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
+                    <FormField
+                      icon={FiUser}
+                      label="Distiller's Mark"
+                      type="text"
+                      value={formData.name}
+                      onChange={(e) => setFormData({...formData, name: e.target.value})}
+                      placeholder="Your distinguished name"
+                    />
+                    
+                    <FormField
+                      icon={FiMail}
+                      label="Correspondence"
+                      type="email"
+                      value={formData.email}
+                      onChange={(e) => setFormData({...formData, email: e.target.value})}
+                      placeholder="your@cellar.com"
+                    />
+                    
+                    <FormField
+                      icon={FiMessageSquare}
+                      label="Your Inquiry"
+                      value={formData.message}
+                      onChange={(e) => setFormData({...formData, message: e.target.value})}
+                      placeholder="Share your tasting preferences or exclusive requests..."
+                      isTextarea={true}
+                    />
+                    
+                    {/* Vintage Seal Button - with restored background hover effect */}
+                    <div className="pt-4">
+                      <button
+                        type="submit"
+                        className="relative w-full py-4 overflow-hidden rounded-sm border border-brand-accent/20 bg-transparent transition-all duration-500 hover:border-brand-accent/40 cursor-pointer backdrop-blur-sm group/btn"
+                      >
+                        <div className="absolute inset-0 w-0 bg-brand-accent/5 group-hover/btn:w-full transition-all duration-700" />
+                        <span className="relative flex items-center justify-center gap-3 text-brand-accent/80 group-hover/btn:text-brand-accent text-[10px] font-bold tracking-[0.2em] uppercase">
+                          <FiSend className="text-sm group-hover/btn:translate-x-1 transition-transform duration-500" />
+                          Send with Distinction
+                        </span>
+                      </button>
+                    </div>
+                    
+                    {/* Vintage stamp text */}
+                    <div className="text-center pt-3">
+                      <p className="text-[8px] font-light tracking-[0.2em] text-gray-600 uppercase">
+                        Private & Confidential • Estate Bottled Correspondence
+                      </p>
+                    </div>
+                  </form>
+                </div> {/* Close Inner Content */}
+              </div> {/* Close Main form card */}
+              
+              {/* "Label" edge shadow effect */}
+              <div className="h-4 bg-linear-to-t from-black/0 to-black/20 w-full -mt-1" />
+            </div> {/* Close Form Container */}
+          </motion.div> {/* Close Left Column */}
 
           {/* Right Column - Quotations */}
           <div className="space-y-6 md:space-y-13">
@@ -246,10 +250,10 @@ export default function Contact() {
                 <FiHeart className="text-brand-accent/40" />
               </div>
             </motion.div>
-          </div>
-        </div>
-      </div>
-
+          </div> {/* Close Right Column */}
+        </div> {/* Close Grid */}
+      </div> {/* Close Two Column Layout */}
+      
       {/* Footer Polish */}
       <div className="absolute bottom-12 w-full text-center">
         <span className="text-brand-accent/20 text-[10px] tracking-[0.2em] font-light uppercase">Soul of Spirits &copy; 2026</span>
